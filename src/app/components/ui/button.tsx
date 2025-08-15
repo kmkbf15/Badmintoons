@@ -8,8 +8,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const defaultStyles = {
-  primary:
-    "bg-main-color-60 text-text-color-100 hover:bg-secondary-color-60 hover:text-text-color-10 cursor-pointer",
+  primary: "bg-main-color-60 text-text-color-100 hover:bg-secondary-color-60",
   secondary: "bg-text-color-5 text-text-color-100 hover:bg-gray-300",
 };
 
@@ -30,8 +29,8 @@ export default function Button({
   ...rest
 }: ButtonProps) {
   const baseClass = `
-    rounded-md font-semibold w-fit transition-all duration-200 block -translate-x-[2px] 
-    -translate-y-[2px] border-1 border-text-color-100 hover:-translate-y-[3px] 
+    cursor-pointer rounded-md font-semibold w-fit transition-all duration-200 block 
+    -translate-x-[2px] -translate-y-[2px] border-1 border-text-color-100 hover:-translate-y-[3px] 
     hover:-translate-x-1 active:translate-x-0 active:translate-y-0
     ${defaultStyles[typeStyle]}
     ${sizeStyles[size]}

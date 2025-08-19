@@ -1,6 +1,6 @@
 export const highlightPhotos = Array.from(
   { length: 15 },
-  (_, i) => `/images/highlights/photo(${i + 1}).JPG`
+  (_, i) => `/images/highlights/(${i + 1}).JPG`
 );
 
 // export const highlightPhotos = [

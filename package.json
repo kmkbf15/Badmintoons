@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.13",
+    "@supabase/supabase-js": "^2.55.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.539.0",

@@ -11,8 +11,8 @@ import Image from "@/app/components/ui/Image";
 import { highlightPhotos } from "./highlight-photos";
 
 export const HeroParallax = () => {
-  const firstRow = highlightPhotos.slice(0, 5);
-  const secondRow = highlightPhotos.slice(5, 10);
+  const firstRow = highlightPhotos.slice(0, 10);
+  const secondRow = highlightPhotos.slice(5, 15);
   const thirdRow = highlightPhotos.slice(10, 15);
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
@@ -23,11 +23,11 @@ export const HeroParallax = () => {
   const springConfig = { stiffness: 1000, damping: 50, bounce: 100 };
 
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.9], [-50, 2500]),
+    useTransform(scrollYProgress, [0, 0.9], [-50, 1500]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 0.9], [50, -2500]),
+    useTransform(scrollYProgress, [0, 0.9], [50, -1500]),
     springConfig
   );
   const rotateX = useSpring(
@@ -35,7 +35,7 @@ export const HeroParallax = () => {
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.1], [0.15, 1]),
+    useTransform(scrollYProgress, [0, 0.1], [0.05, 1]),
     springConfig
   );
   const rotateZ = useSpring(
@@ -76,12 +76,12 @@ export const HeroParallax = () => {
           y: -20,
         }}
         key={photo}
-        className="group/product h-72 aspect-[2/3] relative shrink-0"
+        className="group/product h-40 aspect-[2/3] relative shrink-0"
       >
         <div className="block group-hover/product:shadow-2xl ">
           <Image
             src={photo}
-            className="object-cover object-left-top absolute h-full w-full inset-0"
+            className="object-cover object-left-top absolute h-full w-full inset-0 rounded-sm"
             alt={photo}
           />
         </div>
@@ -116,14 +116,14 @@ export const HeroParallax = () => {
         className=""
       >
         {/* baris 1 */}
-        <motion.div className="flex flex-row-reverse space-x-reverse gap-10 mb-10">
+        <motion.div className="flex flex-row-reverse space-x-reverse gap-5 mb-5">
           {firstRow.map((photo, index) => (
             <ProductCard photo={photo} translate={translateX} key={index} />
           ))}
         </motion.div>
 
         {/* baris 2 */}
-        <motion.div className="flex flex-row mb-10 gap-10 ">
+        <motion.div className="flex flex-row mb-10 gap-5 ">
           {secondRow.map((photo, index) => (
             <ProductCard
               photo={photo}
@@ -134,11 +134,11 @@ export const HeroParallax = () => {
         </motion.div>
 
         {/* baris 3 */}
-        <motion.div className="flex flex-row-reverse space-x-reverse gap-10">
+        {/* <motion.div className="flex flex-row-reverse space-x-reverse gap-10">
           {thirdRow.map((photo, index) => (
             <ProductCard photo={photo} translate={translateX} key={index} />
           ))}
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   );

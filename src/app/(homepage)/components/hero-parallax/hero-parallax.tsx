@@ -100,11 +100,32 @@ export const HeroParallax = () => {
     >
       <div className="relative mx-auto py-[20vh] px-4 w-full left-0 top-0">
         <p className="text-2xl font-bold text-text-color-100">Badmintoons</p>
-        <p className="text-base font-semibold text-text-color-80">
-          We build beautiful highlightPhotos with the latest technologies and
-          frameworks. We are a team of passionate developers and designers that
-          love to build amazing highlightPhotos.
-        </p>
+        <div className="text-base font-semibold text-text-color-80">
+          <p>📅 Every Sunday</p>
+          <p>🕙 10:00AM – 12:00PM</p>
+          <p>📍 @SKY Badminton Sport</p>
+          <p>👫 Newbie - Beginner (All Gender)</p>
+          <p>🎯 21 points/set (1 set per game)</p>
+          <p>🧭 Hosting 2-4 court (7 players per court)</p>
+          <p>
+            💸 IDR <span>45.000</span>/pax (Shuttlecock included)
+          </p>
+          <p>
+            🏦 BCA: 7880736773 (BCA an{" "}
+            <span className="font-bold">Cecilia Angelina C</span>)
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <p>MVPs</p>
+        <div className="flex gap-4">
+          <div>
+            <p>KING</p>
+          </div>
+          <div>
+            <p>QUEEN</p>
+          </div>
+        </div>
       </div>
       <motion.div
         style={{

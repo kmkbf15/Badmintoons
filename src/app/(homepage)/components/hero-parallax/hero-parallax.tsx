@@ -8,12 +8,20 @@ import {
   MotionValue,
 } from "motion/react";
 import Image from "@/app/components/ui/Image";
-import { highlightPhotos } from "./highlight-photos";
+import { useQuery } from "@tanstack/react-query";
+import {
+  fetchHeroParallaxImages,
+  HeroImagesType,
+} from "@/lib/hero-parallax-images/hero-parallax-images";
 
-export const HeroParallax = () => {
-  const firstRow = highlightPhotos.slice(0, 10);
-  const secondRow = highlightPhotos.slice(5, 15);
-  const thirdRow = highlightPhotos.slice(10, 15);
+export const HeroParallax = ({
+  heroPhotos,
+}: {
+  heroPhotos: HeroImagesType[];
+}) => {
+  const firstRow = heroPhotos.slice(0, 10);
+  const secondRow = heroPhotos.slice(5, 15);
+  const thirdRow = heroPhotos.slice(10, 15);
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -23,42 +31,29 @@ export const HeroParallax = () => {
   const springConfig = { stiffness: 1000, damping: 50, bounce: 100 };
 
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.9], [-50, 1500]),
+    useTransform(scrollYProgress, [0, 1], [-50, 1500]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 0.9], [50, -1500]),
+    useTransform(scrollYProgress, [0, 1], [50, -1500]),
     springConfig
   );
   const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.1], [15, 0]),
+    useTransform(scrollYProgress, [0, 0.15], [15, 0]),
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.1], [0.05, 1]),
+    useTransform(scrollYProgress, [0, 0.15], [0.05, 1]),
     springConfig
   );
   const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.1], [20, 0]),
+    useTransform(scrollYProgress, [0, 0.15], [20, 0]),
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.1], [-250, 50]),
+    useTransform(scrollYProgress, [0, 0.15], [-250, 50]),
     springConfig
   );
-
-  // const Header = () => {
-  //   return (
-  //     <div className="relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
-  //       <h1 className="text-2xl font-bold">Badmintoons</h1>
-  //       <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-  //         We build beautiful highlightPhotos with the latest technologies and
-  //         frameworks. We are a team of passionate developers and designers that
-  //         love to build amazing highlightPhotos.
-  //       </p>
-  //     </div>
-  //   );
-  // };
 
   const ProductCard = ({
     photo,
@@ -96,9 +91,24 @@ export const HeroParallax = () => {
   return (
     <div
       ref={ref}
-      className="h-[200vh] overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[150vh] overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
-      <div className="relative mx-auto py-[20vh] px-4 w-full left-0 top-0">
+      <div className="relative mx-auto px-4 w-full left-0 top-0">
+        <div className="flex flex-col gap-4">
+          <p className="font-bold text-4xl text-main-color-100">MVPs</p>
+          <div className="w-full px-4 grid grid-cols-2 gap-4">
+            <Image
+              src=""
+              alt="King"
+              className="w-full object-cover aspect-auto"
+            />
+            <Image
+              src=""
+              alt="Queen"
+              className="w-full object-cover aspect-auto"
+            />
+          </div>
+        </div>
         <p className="text-2xl font-bold text-text-color-100">Badmintoons</p>
         <div className="text-base font-semibold text-text-color-80">
           <p>📅 Every Sunday</p>
@@ -138,16 +148,20 @@ export const HeroParallax = () => {
       >
         {/* baris 1 */}
         <motion.div className="flex flex-row-reverse space-x-reverse gap-5 mb-5">
-          {firstRow.map((photo, index) => (
-            <ProductCard photo={photo} translate={translateX} key={index} />
+          {firstRow.map((heroPhoto, index: number) => (
+            <ProductCard
+              photo={heroPhoto.image}
+              translate={translateX}
+              key={index}
+            />
           ))}
         </motion.div>
 
         {/* baris 2 */}
         <motion.div className="flex flex-row mb-10 gap-5 ">
-          {secondRow.map((photo, index) => (
+          {secondRow.map((heroPhoto, index: number) => (
             <ProductCard
-              photo={photo}
+              photo={heroPhoto.image}
               translate={translateXReverse}
               key={index}
             />

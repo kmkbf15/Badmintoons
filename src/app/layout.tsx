@@ -1,6 +1,8 @@
+// layout.tsx (keep as server component)
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
+import Providers from "./components/providers";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -23,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={ubuntu.variable}>
       <body className="antialiased font-sans">
-        <main className="">{children}</main>
+        <Providers>
+          <main className="">{children}</main>
+        </Providers>
       </body>
     </html>
   );
